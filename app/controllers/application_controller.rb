@@ -29,8 +29,8 @@ class ApplicationController < ActionController::Base
   def calculate_payment
     #params = {"number"=>"XX"}
     @apr_f = params.fetch("apr").to_f
-    @apr = @apr_f / 100
-    @apr_perc = @apr_f.to_s(:percentage)
+    @apr = (@apr_f / 100).round(4)
+    @apr_perc = (@apr*100).to_s(:percentage, {:precision => 4})
     @r = @apr/12
     @years = params.fetch("years").to_f
     @months = @years*12
